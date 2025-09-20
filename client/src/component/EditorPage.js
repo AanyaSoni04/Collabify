@@ -14,35 +14,59 @@ import {useNavigate,  useLocation ,useParams, Navigate} from "react-router-dom";
 
 
 function EditorPage() {
+
+    const [clients, setClient] = useState([]);
+
+
   const socketRef = useRef(null);
   const location = useLocation();
   const {roomId} = useParams();
   const navigate = useNavigate();
+
   useEffect(()=>{
+    console.log("Username from location.state:", location.state?.username);
+
+      const handleError = (e) => {
+        console.log("Socket error =>", e);
+        toast.error("Socket connection failed, try again later.");
+        navigate("/");
+      };
+      
     const init = async()=>{
       socketRef.current = await initSocket();
       socketRef.current.on('connect_error',(err)=> handleError(err));
       socketRef.current.on("connect_failed", (err) => handleError(err));
-      const handleError = (e) => { 
-         console.log("Socket error =>", e);
-         toast.error("Socket connection failed, try again later.");
-         navigate("/");
-         // navigate to home page
-         // navigate("/");  
-      };
-      
+    
       socketRef.current.emit('join',{
         roomId,
         username: location.state?.username,
       });
+      
+      socketRef.current.on('joined',({clients, username, socketId})=>{
+        if(username !== location.state?.username){
+          toast.success(`${username} joined the room.`);
+        }
+        setClient(clients);
+      });
+
+      //disconnected
+      socketRef.current.on("disconnected", ({ socketId, username }) => {
+        toast.success(`${username} left the room.`);
+        setClient((prev) => {
+          return prev.filter((client) => client.socketId !== socketId);
+        });
+      });
     };
     init();
+
+    return ()=>{
+      socketRef.current.disconnect();
+      socketRef.current.off('joined');
+      socketRef.current.off("disconnected");
+    };
+
   },[]);
       
-  const [clients, setClient] = useState([
-    { socketId: 1, username: "Aanya" },
-    { socketId: 2, username: "Rishu" },
-  ]);
 
 
   if(!location.state){
