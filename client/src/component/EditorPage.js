@@ -110,7 +110,7 @@ function EditorPage() {
 
         {/* editor */}
         <div className="col-md-10 text-light d-flex flex-column h-100">
-          <Editor></Editor>
+          <Editor socketRef={socketRef} roomId={roomId}/>
         </div>
       </div>
     </div>
