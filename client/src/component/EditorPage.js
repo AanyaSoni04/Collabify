@@ -47,7 +47,11 @@ function EditorPage() {
           toast.success(`${username} joined the room.`);
         }
         setClient(clients);
-      });
+        socketRef.current.emit("sync-code",{
+          code: codeRef.current,
+          socketId,
+        });
+    });
 
       //disconnected
       socketRef.current.on("disconnected", ({ socketId, username }) => {

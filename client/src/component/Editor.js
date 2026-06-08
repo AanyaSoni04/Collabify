@@ -29,6 +29,8 @@ function Editor({ socketRef ,roomId }) {
         // console.log("changes", instance ,  changes );
         const { origin } = changes;
         const code = instance.getValue(); // code has value which we write
+        onCodeChange(code);
+
         if (origin !== "setValue") {
           socketRef.current.emit("code-change", {
             roomId,
