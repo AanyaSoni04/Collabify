@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { initSocket } from "../socket";
 import { useNavigate, useLocation, useParams, Navigate } from "react-router-dom";
-
+/* eslint-disable react-hooks/exhaustive-deps */
 
 
 
@@ -24,6 +24,7 @@ function EditorPage() {
   const { roomId } = useParams();
   const navigate = useNavigate();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     console.log("Username from location.state:", location.state?.username);
 

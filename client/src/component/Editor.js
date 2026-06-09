@@ -5,9 +5,11 @@ import "codemirror/theme/dracula.css";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/addon/edit/closetag";
 import "codemirror/addon/edit/closebrackets"
+/* eslint-disable react-hooks/exhaustive-deps */
 
 function Editor({ socketRef, roomId, onCodeChange }) {
   const editorRef = useRef(null);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const init = async () => {
       const editor = CodeMirror.fromTextArea(
@@ -43,18 +45,20 @@ function Editor({ socketRef, roomId, onCodeChange }) {
     init();
   }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (socketRef.current) {
-      socketRef.current.on('code-change', ({ code }) => {
+      socketRef.current.on("code-change", ({ code }) => {
         if (code !== null) {
           editorRef.current.setValue(code);
         }
       });
     }
+
     return () => {
-      socketRef.current.off("code-change");
+      socketRef.current?.off("code-change");
     };
-  }, [socketRef.current]);
+  }, []);
 
   return (
     <div style={{ height: "600px" }}>
