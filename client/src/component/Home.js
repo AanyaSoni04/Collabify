@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import {v4 as uuid} from "uuid";
+import { v4 as uuid } from "uuid";
 import { toast } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -11,25 +11,25 @@ function Home() {
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
-  const generateRoomId =(e)=>{
+  const generateRoomId = (e) => {
     e.preventDefault();
     const id = uuid();
     setRoomId(id);
     toast.success("Room Id is generated");
   };
 
-  const joinRoom =()=>{
-    if(!roomId || !username){
+  const joinRoom = () => {
+    if (!roomId || !username) {
       toast.error("Both the feild is required");
       return;
     }
     //navigate
-    navigate(`/editor/${roomId}` ,{
-       state:{username},
+    navigate(`/editor/${roomId}`, {
+      state: { username },
     });
     toast.success("Room is created");
   }
-  
+
   return (
     <div class="container-fluid">
       <div className="row justify-content-center align-items-center min-vh-100">
@@ -46,7 +46,7 @@ function Home() {
               <div className="form-group">
                 <input
                   value={roomId}
-                  onChange={(e)=> setRoomId(e.target.value)}
+                  onChange={(e) => setRoomId(e.target.value)}
                   type="text"
                   className="form-control mb-2"
                   placeholder="Room ID"
@@ -55,7 +55,7 @@ function Home() {
               <div className="form-group">
                 <input
                   value={username}
-                  onChange={(e)=> setUsername(e.target.value)}
+                  onChange={(e) => setUsername(e.target.value)}
                   type="text"
                   className="form-control mb-2"
                   placeholder="Username"

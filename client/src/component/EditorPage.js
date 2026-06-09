@@ -107,8 +107,19 @@ function EditorPage() {
           {/* buttons */}
           <div className="mt-auto">
             <hr />
-            <button className="btn btn-success">Copy Room Id</button>
-            <button className="btn btn-danger mt-2 mb-2 px-3 btn-block">
+            <button
+              className="btn btn-success"
+              onClick={() => {
+                navigator.clipboard.writeText(roomId);
+                toast.success("Room ID copied");
+              }}
+            >
+              Copy Room Id
+            </button>
+            <button
+              className="btn btn-danger mt-2 mb-2 px-3 btn-block"
+              onClick={() => navigate("/")}
+            >
               Leave Room
             </button>
           </div>

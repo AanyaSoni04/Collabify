@@ -28,9 +28,11 @@ function Editor({ socketRef, roomId, onCodeChange }) {
 
       editor.setSize(null, "100%");
       editorRef.current.on("change", (instance, changes) => {
-        // console.log("changes", instance ,  changes );
         const { origin } = changes;
-        const code = instance.getValue(); // code has value which we write
+        const code = instance.getValue();
+
+        console.log("EMITTING:", code);
+
         onCodeChange(code);
 
         if (origin !== "setValue") {
@@ -49,6 +51,8 @@ function Editor({ socketRef, roomId, onCodeChange }) {
   useEffect(() => {
     if (socketRef.current) {
       socketRef.current.on("code-change", ({ code }) => {
+        console.log("RECEIVED FROM SOCKET:", code);
+
         if (code !== null) {
           editorRef.current.setValue(code);
         }
