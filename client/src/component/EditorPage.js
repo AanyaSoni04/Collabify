@@ -3,7 +3,7 @@ import Editor from "./Editor";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { initSocket } from "../socket";
-import {useNavigate,  useLocation ,useParams, Navigate} from "react-router-dom";
+import { useNavigate, useLocation, useParams, Navigate } from "react-router-dom";
 
 
 
@@ -15,43 +15,44 @@ import {useNavigate,  useLocation ,useParams, Navigate} from "react-router-dom";
 
 function EditorPage() {
 
-    const [clients, setClient] = useState([]);
+  const [clients, setClient] = useState([]);
 
 
   const socketRef = useRef(null);
+  const codeRef = useRef(null);
   const location = useLocation();
-  const {roomId} = useParams();
+  const { roomId } = useParams();
   const navigate = useNavigate();
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("Username from location.state:", location.state?.username);
 
-      const handleError = (e) => {
-        console.log("Socket error =>", e);
-        toast.error("Socket connection failed, try again later.");
-        navigate("/");
-      };
-      
-    const init = async()=>{
+    const handleError = (e) => {
+      console.log("Socket error =>", e);
+      toast.error("Socket connection failed, try again later.");
+      navigate("/");
+    };
+
+    const init = async () => {
       socketRef.current = await initSocket();
-      socketRef.current.on('connect_error',(err)=> handleError(err));
+      socketRef.current.on('connect_error', (err) => handleError(err));
       socketRef.current.on("connect_failed", (err) => handleError(err));
-    
-      socketRef.current.emit('join',{
+
+      socketRef.current.emit('join', {
         roomId,
         username: location.state?.username,
       });
-      
-      socketRef.current.on('joined',({clients, username, socketId})=>{
-        if(username !== location.state?.username){
+
+      socketRef.current.on('joined', ({ clients, username, socketId }) => {
+        if (username !== location.state?.username) {
           toast.success(`${username} joined the room.`);
         }
         setClient(clients);
-        socketRef.current.emit("sync-code",{
+        socketRef.current.emit("sync-code", {
           code: codeRef.current,
           socketId,
         });
-    });
+      });
 
       //disconnected
       socketRef.current.on("disconnected", ({ socketId, username }) => {
@@ -63,17 +64,17 @@ function EditorPage() {
     };
     init();
 
-    return ()=>{
+    return () => {
       socketRef.current.disconnect();
       socketRef.current.off('joined');
       socketRef.current.off("disconnected");
     };
 
-  },[]);
-      
+  }, []);
 
 
-  if(!location.state){
+
+  if (!location.state) {
     return <Navigate to="/" />;
   }
 
@@ -114,7 +115,13 @@ function EditorPage() {
 
         {/* editor */}
         <div className="col-md-10 text-light d-flex flex-column h-100">
-          <Editor socketRef={socketRef} roomId={roomId}/>
+          <Editor
+            socketRef={socketRef}
+            roomId={roomId}
+            onCodeChange={(code) => {
+              codeRef.current = code;
+            }}
+          />
         </div>
       </div>
     </div>

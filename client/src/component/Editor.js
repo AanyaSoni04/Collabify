@@ -6,9 +6,9 @@ import "codemirror/mode/javascript/javascript";
 import "codemirror/addon/edit/closetag";
 import "codemirror/addon/edit/closebrackets"
 
-function Editor({ socketRef ,roomId }) {
+function Editor({ socketRef, roomId, onCodeChange }) {
   const editorRef = useRef(null);
-  useEffect(()=>{
+  useEffect(() => {
     const init = async () => {
       const editor = CodeMirror.fromTextArea(
         document.getElementById("realTimeEditor"),
@@ -38,10 +38,10 @@ function Editor({ socketRef ,roomId }) {
           });
         }
       });
-     
+
     };
     init();
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (socketRef.current) {
