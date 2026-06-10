@@ -7,15 +7,7 @@ Collabify is a real-time collaborative code editor that enables multiple users t
 
 A real-time collaborative code editor built with React, Express, and Socket.IO.
 ---
-<p align="center">
-  <img src="./assets/home.png" width="45%">
-  <img src="./assets/editor.png" width="45%">
-</p>
 
-<p align="center">
-  <img src="./assets/room.png" width="45%">
-  <img src="./assets/collaboration.png" width="45%">
-</p>
 
 ## 📸 Preview
 
@@ -49,6 +41,13 @@ A real-time collaborative code editor built with React, Express, and Socket.IO.
 - React Hot Toast
 - React Avatar
 - UUID
+
+  🧱 Tech Stack
+Frontend: React + react-router-dom
+Editor: CodeMirror
+Real-time: socket.io-client
+Backend: Express + Socket.IO
+Styling: Bootstrap
 
 ### Backend
 - Node.js
@@ -138,12 +137,13 @@ http://localhost:3000
 
 ## 🔄 How It Works
 
-1. User enters a username.
-2. User creates or enters an existing Room ID.
-3. Socket.IO establishes a real-time connection.
-4. Every code change is instantly broadcast to all users in the room.
-5. New participants automatically receive the latest code state.
-6. Users leaving the room are removed from the participant list.
+1.Open the app in your browser via the React dev server.
+2. User enters a username.
+3. User creates or enters an existing Room ID.
+4. Socket.IO establishes a real-time connection.
+5. Every code change is instantly broadcast to all users in the room.
+6. New participants automatically receive the latest code state.
+7. Users leaving the room are removed from the participant list.
 
 ---
 
