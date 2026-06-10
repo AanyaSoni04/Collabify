@@ -2,6 +2,10 @@
 
 Collabify is a real-time collaborative code editor that enables multiple users to join a shared room and write code together seamlessly. It uses Socket.IO for instant synchronization, making it ideal for coding interviews, pair programming, and collaborative learning.
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://collabify-three.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge)](https://github.com/your-username/Collabify)
+
+A real-time collaborative code editor built with React, Express, and Socket.IO.
 ---
 
 ## 📸 Preview
