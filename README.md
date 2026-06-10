@@ -7,6 +7,15 @@ Collabify is a real-time collaborative code editor that enables multiple users t
 
 A real-time collaborative code editor built with React, Express, and Socket.IO.
 ---
+<p align="center">
+  <img src="./assets/home.png" width="45%">
+  <img src="./assets/editor.png" width="45%">
+</p>
+
+<p align="center">
+  <img src="./assets/room.png" width="45%">
+  <img src="./assets/collaboration.png" width="45%">
+</p>
 
 ## 📸 Preview
 
