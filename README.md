@@ -42,12 +42,6 @@ A real-time collaborative code editor built with React, Express, and Socket.IO.
 - React Avatar
 - UUID
 
-  🧱 Tech Stack
-Frontend: React + react-router-dom
-Editor: CodeMirror
-Real-time: socket.io-client
-Backend: Express + Socket.IO
-Styling: Bootstrap
 
 ### Backend
 - Node.js
@@ -63,18 +57,26 @@ Collabify/
 │
 ├── client/
 │   ├── public/
+│   │   └── images/
 │   ├── src/
-│   │    ├── component/
-│   │    ├── App.js
-│   │    ├── socket.js
-│   │    └── ...
+│   │   ├── component/
+│   │   │   ├── Client.js
+│   │   │   ├── Editor.js
+│   │   │   ├── EditorPage.js
+│   │   │   └── Home.js
+│   │   ├── socket.js
+│   │   ├── App.js
+│   │   └── index.js
+│   ├── .env
 │   └── package.json
 │
 ├── server/
 │   ├── index.js
 │   └── package.json
 │
-└── README.md
+├── .gitignore
+├── README.md
+└── structure.txt
 ```
 
 ---
