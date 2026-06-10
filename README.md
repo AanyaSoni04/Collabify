@@ -13,8 +13,10 @@ A real-time collaborative code editor built with React, Express, and Socket.IO.
 
 > Add screenshots or a demo GIF here
 
+
 ![Home Page](./client/public/images/codecast.png)
 
+![Collabify Home Page](./assets/home-page.png)
 ---
 
 ## ✨ Features
