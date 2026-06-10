@@ -141,12 +141,18 @@ http://localhost:3000
 
 ## 🔄 How It Works
 
-1.Open the app in your browser via the React dev server.
+1. Open the app in your browser via the React dev server.
+
 2. User enters a username.
+
 3. User creates or enters an existing Room ID.
+
 4. Socket.IO establishes a real-time connection.
+
 5. Every code change is instantly broadcast to all users in the room.
+
 6. New participants automatically receive the latest code state.
+
 7. Users leaving the room are removed from the participant list.
 
 ---
