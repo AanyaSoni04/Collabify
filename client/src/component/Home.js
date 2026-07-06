@@ -20,7 +20,7 @@ function Home() {
 
   const joinRoom = () => {
     if (!roomId || !username) {
-      toast.error("Both the feild is required");
+      toast.error("Both fields are required");
       return;
     }
     //navigate
@@ -31,10 +31,10 @@ function Home() {
   }
 
   return (
-    <div class="container-fluid">
+    <div className="container-fluid">
       <div className="row justify-content-center align-items-center min-vh-100">
         <div className="div col-12 col-md-6">
-          <div className="card shadow-sm p-2 mb-5 bg-secondry rounded">
+          <div className="card shadow-sm p-2 mb-5 bg-secondary rounded">
             <div className="card-body text-center bg-dark">
               <img
                 className="img-fluid mx-auto d-block"

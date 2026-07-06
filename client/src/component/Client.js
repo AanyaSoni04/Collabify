@@ -4,12 +4,12 @@ function Client({username}) {
   return (
     <div className="d-flex align-items-center mb-3">
       <Avatar
-        name={username.toString()}
+        name={username?.toString() || "Anonymous"}
         size={50}
         round="14px"
         className="mr-3"
       ></Avatar>
-      <span className="mx-2">{username.toString()}</span>
+      <span className="mx-2">{username?.toString() || "Anonymous"}</span>
     </div>
   );
 }

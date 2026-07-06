@@ -16,6 +16,7 @@ import { useNavigate, useLocation, useParams, Navigate } from "react-router-dom"
 function EditorPage() {
 
   const [clients, setClient] = useState([]);
+  const [socketReady, setSocketReady] = useState(false);
 
 
   const socketRef = useRef(null);
@@ -36,6 +37,7 @@ function EditorPage() {
 
     const init = async () => {
       socketRef.current = await initSocket();
+      setSocketReady(true);
       socketRef.current.on('connect_error', (err) => handleError(err));
       socketRef.current.on("connect_failed", (err) => handleError(err));
 
@@ -66,9 +68,11 @@ function EditorPage() {
     init();
 
     return () => {
-      socketRef.current.disconnect();
-      socketRef.current.off('joined');
-      socketRef.current.off("disconnected");
+      if (socketRef.current) {
+        socketRef.current.disconnect();
+        socketRef.current.off('joined');
+        socketRef.current.off("disconnected");
+      }
     };
 
   }, []);
@@ -127,13 +131,15 @@ function EditorPage() {
 
         {/* editor */}
         <div className="col-md-10 text-light d-flex flex-column h-100">
-          <Editor
-            socketRef={socketRef}
-            roomId={roomId}
-            onCodeChange={(code) => {
-              codeRef.current = code;
-            }}
-          />
+          {socketReady && (
+            <Editor
+              socketRef={socketRef}
+              roomId={roomId}
+              onCodeChange={(code) => {
+                codeRef.current = code;
+              }}
+            />
+          )}
         </div>
       </div>
     </div>
