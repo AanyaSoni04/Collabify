@@ -51,10 +51,6 @@ function EditorPage() {
           toast.success(`${username} joined the room.`);
         }
         setClient(clients);
-        socketRef.current.emit("sync-code", {
-          code: codeRef.current,
-          socketId,
-        });
       });
 
       //disconnected
@@ -135,6 +131,7 @@ function EditorPage() {
             <Editor
               socketRef={socketRef}
               roomId={roomId}
+              username={location.state?.username}
               onCodeChange={(code) => {
                 codeRef.current = code;
               }}

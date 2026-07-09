@@ -36,3 +36,48 @@
     transform: rotate(360deg);
   }
 }
+
+/* Yjs Remote Selection & Cursors styling */
+.remote-caret {
+  position: relative;
+  border-left: 2px solid;
+  border-right: 0;
+  margin-left: -1px;
+  margin-right: -1px;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 1.4em;
+  vertical-align: middle;
+  z-index: 10;
+}
+
+.remote-caret > div {
+  position: absolute;
+  top: -1.4em;
+  left: -2px;
+  font-size: 11px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #fff;
+  padding: 1px 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+  user-select: none;
+  transition: opacity .3s ease-in-out;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 11;
+}
+
+.remote-caret.hide-name > div {
+  opacity: 0;
+}
+
+.remote-caret:hover > div {
+  opacity: 1;
+}
+
+/* Make selection highlights semi-transparent and readable */
+.y-line-selection {
+  opacity: 0.4;
+}
